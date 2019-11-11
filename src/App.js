@@ -13,6 +13,8 @@ render() {
 
           You are: {authText}
 
+
+            <button onClick={this.loginStart}>Start login</button>
         </header>
       </div>
   );
