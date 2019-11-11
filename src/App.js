@@ -14,6 +14,7 @@ class App extends Component {
 
     constructor(props) {
         super(props);
+        this.loginComplete = this.loginComplete.bind(this);
         this.state = {
             user: null
         };
@@ -21,6 +22,11 @@ class App extends Component {
 
     loginStart(e) {
         manager.signinRedirect();
+    }
+
+    loginComplete(e) {
+        manager.signinRedirectCallback()
+            .then(user => this.setState({user: user}));
     }
 
     render() {
@@ -35,6 +41,8 @@ class App extends Component {
 
 
                     <button onClick={this.loginStart}>Start login</button>
+                    <button onClick={this.loginComplete}>Complete login</button>
+                    <hr/>
                 </header>
             </div>
         );
