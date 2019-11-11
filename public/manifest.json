@@ -1,21 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SPA integrasjon med ID-porten",
+  "name": "Eksempel applikasjon for SPA integrasjon med ID-porten over OIDC",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "eid-logo.gif",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
