@@ -29,9 +29,18 @@ class App extends Component {
             .then(user => this.setState({user: user}));
     }
 
+    isAuthenticated() {
+        if (this.state.user) {
+            return this.state.user.access_token !== "" && this.state.user.expires_at > parseInt(Date.now() / 1000);
+        } else {
+            return false;
+        }
+    }
+
     render() {
 
-        const authText = "NOT authenticated";
+        const authText = this.isAuthenticated() ? "authenticated" : "NOT authenticated";
+        const user = this.state.user;
 
         return (
             <div className="App">
