@@ -4,30 +4,49 @@ import {UserManager} from 'oidc-client';
 
 const manager = new UserManager({
     authority: "https://oidc-ver2.difi.no/idporten-oidc-provider",
-    client_id: "oidc_difi_spa_example1",
-    redirect_uri: "http://localhost:3000/",
+    client_id: "713848d2-288c-45a3-ae33-3d8e1cd00de2",
+    redirect_uri: "http://localhost:3000",
     response_type: "code",
     scope: "openid profile",
 });
 
-class App extends Component{
+class App extends Component {
 
-render() {
+    constructor(props) {
+        super(props);
+        this.loginComplete = this.loginComplete.bind(this);
+        this.state = {
+            user: null
+        };
+    }
 
-  const authText = "NOT authenticated";
+    loginStart(e) {
+        manager.signinRedirect();
+    }
 
-  return (
-      <div className="App">
-        <header className="App-header">
+    loginComplete(e) {
+        manager.signinRedirectCallback()
+            .then(user => this.setState({user: user}));
+    }
 
-          You are: {authText}
+    render() {
+
+        const authText = "NOT authenticated";
+
+        return (
+            <div className="App">
+                <header className="App-header">
+
+                    You are: {authText}
 
 
-            <button onClick={this.loginStart}>Start login</button>
-        </header>
-      </div>
-  );
-}
+                    <button onClick={this.loginStart}>Start login</button>
+                </header>
+            </div>
+        );
+    }
+
+
 }
 
 export default App;
