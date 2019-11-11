@@ -15,6 +15,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.loginComplete = this.loginComplete.bind(this);
+        this.logoutComplete = this.logoutComplete.bind(this);
         this.state = {
             user: null
         };
@@ -27,6 +28,15 @@ class App extends Component {
     loginComplete(e) {
         manager.signinRedirectCallback()
             .then(user => this.setState({user: user}));
+    }
+
+    logoutStart(e) {
+        manager.signoutRedirect();
+    }
+
+    logoutComplete(e) {
+        manager.signoutRedirectCallback()
+            .then(() => this.setState({user: null}));
     }
 
     isAuthenticated() {
@@ -66,6 +76,8 @@ class App extends Component {
                     <button onClick={this.loginStart}>Start login</button>
                     <button onClick={this.loginComplete}>Complete login</button>
                     <br/>
+                    <button onClick={this.logoutStart}>Start logout</button>
+                    <button onClick={this.logoutComplete}>Complete logout</button>
 
                 </header>
             </div>
