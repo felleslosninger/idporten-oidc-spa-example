@@ -46,12 +46,27 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
 
-                    You are: {authText}
-
-
+                    <p>You are: <b>{authText}</b></p>
+                    <br/>
+                    {user &&
+                    <Fragment>
+                        <table>
+                            <thead>
+                            <tr><th>Attribute</th><th>Value</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr><td>access_token: </td><td >{user.access_token.substr(0, 50) + "..."}</td></tr>
+                            <tr><td>scope: </td><td>{user.scope}</td></tr>
+                            <tr><td>pid: </td><td>{user.profile.pid}</td></tr>
+                            </tbody>
+                        </table>
+                    </Fragment>
+                    }
+                    <br/>
                     <button onClick={this.loginStart}>Start login</button>
                     <button onClick={this.loginComplete}>Complete login</button>
-                    <hr/>
+                    <br/>
+
                 </header>
             </div>
         );
