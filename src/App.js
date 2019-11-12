@@ -19,8 +19,12 @@ class App extends Component {
         super(props);
         this.loginComplete = this.loginComplete.bind(this);
         this.logoutComplete = this.logoutComplete.bind(this);
+        this.callApiHealth= this.callApiHealth.bind(this);
+        this.callOppslagstjenestenApi = this.callOppslagstjenestenApi.bind(this);
         this.state = {
-            user: null
+            user: null,
+            apihealth: null,
+            userdata: null
         };
     }
 
@@ -50,10 +54,24 @@ class App extends Component {
         }
     }
 
+    callOppslagstjenestenApi(e) {
+    }
+
+    callApiHealth(e) {
+        let currentComponent = this;
+        fetch("https://api.idporten-ver2.difi.no/innlogginger/health")
+        //fetch("https://oidc-ver2.difi.no/kontaktinfo-oauth2-server/health")
+            .then(res => res.json())
+            .then((result) => currentComponent.setState({ apihealth: result.status }))
+            .catch(function(error) {
+            console.log(error);
+        });
+    }
+
     render() {
 
         const authText = this.isAuthenticated() ? "authenticated" : "NOT authenticated";
-        const user = this.state.user;
+        const { user, apihealth, userdata } = this.state;
 
         return (
             <div className="App">
@@ -78,6 +96,19 @@ class App extends Component {
                     <br/>
                     <button onClick={this.loginStart}>Start login</button>
                     <button onClick={this.loginComplete}>Complete login</button>
+                    <br/>
+                    {apihealth &&
+                    <p>API is: {apihealth}</p>
+
+                    }
+                    <button onClick={this.callApiHealth}>Call API</button>
+                    <br/>
+
+                    {userdata &&
+                    <p>API has this data about you: {userdata}</p>
+
+                    }
+                    <button onClick={this.callOppslagstjenestenApi}>Fetch data from API</button>
                     <br/>
                     <button onClick={this.logoutStart}>Start logout</button>
                     <button onClick={this.logoutComplete}>Complete logout</button>
