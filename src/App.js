@@ -23,7 +23,7 @@ class App extends Component {
         this.loginComplete = this.loginComplete.bind(this);
         this.logoutComplete = this.logoutComplete.bind(this);
         this.callApiHealth= this.callApiHealth.bind(this);
-        this.callOppslagstjenestenApi = this.callOppslagstjenestenApi.bind(this);
+        this.callEventlogApi = this.callEventlogApi.bind(this);
         this.state = {
             user: null,
             apihealth: null,
@@ -57,7 +57,7 @@ class App extends Component {
         }
     }
 
-    callOppslagstjenestenApi(e) {
+    callEventlogApi(e) {
         //fetch("https://eid-systest-web01.dmz.local/authorizations",{
         fetch("https://eid-systest-web01.dmz.local/eventlog-api/logg/idporten/all?maxhits=1",{
             method: "GET",
@@ -89,7 +89,7 @@ class App extends Component {
 
         const authText = this.isAuthenticated() ? "authenticated" : "NOT authenticated";
         const { user, apihealth } = this.state;
-        const { userdata } = this.state.userdata;
+        const { userdata } = this.state;
         console.log(userdata);
         return (
             <div className="App">
@@ -123,18 +123,26 @@ class App extends Component {
                     <br/>
 
 
-                    {userdata && userdata.length && <Fragment><p>API has this data about you:</p>
-                        userdata.map((item, index) => {
-                             <div> Innlogging med ID-porten:
+                    {userdata && userdata.length && <Fragment>
+                        <div> Siste innlogging med ID-porten: </div>
+                            <table>
 
-                            </div>
-                        }
-                        );
+                            {userdata.map((item, index) =>
+                                <tbody>
+                                <tr><td> Tidspunkt </td><td> {item.tidspunkt} </td></tr>
+                                <tr><td> Tjeneste </td><td> {item.tjeneste} </td></tr>
+                                <tr><td>Integrasjon </td><td>{item.integrasjon_id}</td></tr>
+                                <tr><td>e-Id </td><td>{item.eid}</td></tr>
+                                <tr><td>Orgno </td><td>{item.orgno}</td></tr>
+                                </tbody>
+                            )}
+
+                            </table>
                     </Fragment>
                     }
 
 
-                    <button onClick={this.callOppslagstjenestenApi}>Fetch data from API</button>
+                    <button onClick={this.callEventlogApi}>Fetch data from API</button>
 
                     <br/>
                     <button onClick={this.logoutStart}>Start logout</button>
