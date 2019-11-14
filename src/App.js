@@ -116,7 +116,7 @@ class App extends Component {
                     <br/>
 
 
-                    {userdata && userdata.length && <Fragment>
+                    {userdata && userdata.length>0 && <Fragment>
                         <div> Siste innlogging med ID-porten: </div>
                             <table>
 
