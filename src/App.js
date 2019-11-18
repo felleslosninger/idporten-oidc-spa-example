@@ -9,7 +9,7 @@ const manager = new UserManager({
     silent_redirect_uri: "http://localhost:3000",
     post_logout_redirect_uri: "http://localhost:3000",
     response_type: "code",
-    scope: "openid profile idporten:user.log.read",
+    scope: "openid idporten:user.log.read",
     loadUserInfo: false
 });
 
@@ -99,7 +99,7 @@ class App extends Component {
                             <tbody>
                             <tr><td>access_token: </td><td >{user.access_token.substr(0, 50) + "..."}</td></tr>
                             <tr><td>scope: </td><td>{user.scope}</td></tr>
-                            <tr><td>pid: </td><td>{user.profile.pid}</td></tr>
+
                             </tbody>
                         </table>
                     </Fragment>
