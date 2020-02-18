@@ -1,7 +1,7 @@
 # Single-page-applikasjon for å hente ut brukardata frå eit API sikra med ID-porten
 Denne applikasjonen blei laga som grunnlag for presentasjon "SPA integrert i ID-porten" på Integrasjons- og sikkerhetsforum 2019 arrangert av Digitaliseringsdirektoratet (DIFI då).
 Sjølve presentasjonen ligg her: https://samarbeid.difi.no/nyhet/2019/11/oppsummering-fra-integrasjons-og-sikkerhetsforum-2019.
-Hovuddelen av presentasjonen var demo av denne applikasjonen der ein tok utgongspunkt i branch nummerert frå 1* til 8* for å vise utviklinga av ein Single-page-applikasjon der sluttbrukar kunne på enklast vis logge inn med ID-porten og få tilgong til sine data frå eit API sikra med ID-porten.
+Hovuddelen av presentasjonen var demo av denne applikasjonen der ein tok utgongspunkt i branch nummerert frå 1* til 8* for å vise utviklinga av ein Single-page-applikasjon der sluttbrukar kunne på enklast vis logge inn med ID-porten og få tilgong til sine data frå eit API sikra med ID-porten. All koden ligg også på master-branchen.
 
 **NB: Dette er IKKJE produksjonskode, berre eit kraftig forenkla eksempel med fokus på funksjonalitet med minst mogeleg kode.** 
 
